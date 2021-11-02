@@ -6,14 +6,35 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+
+  "lint-staged": {
+    "*.js": [
+      "standard --fix",
+      "git add"
+    ]
+  },
+
+  "husky":{
+    "hooks":{
+      "pre-commit":"lint-staged"
+    }
+  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thegiovanesilva/setup-project.git"
   },
+
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/thegiovanesilva/setup-project/issues"
   },
-  "homepage": "https://github.com/thegiovanesilva/setup-project#readme"
+  
+  "homepage": "https://github.com/thegiovanesilva/setup-project#readme",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "standard": "^16.0.4"
+  }
 }
