@@ -5,11 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
-    "test:staged": "jest"
+    "test:staged": "jest",
+    "lint": "eslint src --max-warnings=0"
   },
-  "standard": {
-    "env": [
-      "jest"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*": [
+      "eslint --fix"
     ]
   },
   "repository": {
@@ -23,9 +29,15 @@
   },
   "homepage": "https://github.com/thegiovanesilva/setup-project#readme",
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "lint-staged": "^11.2.6",
-    "standard": "^16.0.4"
+    "standard": "^16.0.4",
+    "yarn": "^1.22.17"
   }
 }
