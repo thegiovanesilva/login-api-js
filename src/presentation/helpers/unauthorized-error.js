@@ -1,6 +1,6 @@
 module.exports = class UnauthorizedError extends Error{
     constructor(paramName){
-      super(`Unauthorized, invalid ${paramName}.`)
+      super(`Unauthorized`)
       this.name = 'UnauthorizedError'
     }
   }
