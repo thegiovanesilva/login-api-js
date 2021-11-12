@@ -178,6 +178,6 @@ describe('Login Router', () => {
     }
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body.email).toEqual(new InvalidParamError('email'))
+    expect(httpResponse.body).toEqual(new InvalidParamError('email'))
   })
 })
