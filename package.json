@@ -7,7 +7,7 @@
     "test": "jest --watchAll --silent --verbose",
     "test:staged": "jest",
     "lint": "eslint src --max-warnings=0",
-    "test:ci": ""
+    "test:ci": "jest --coverage"
   },
   "repository": {
     "type": "git",
