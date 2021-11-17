@@ -1,6 +1,6 @@
 {
   "*.js": [
     "lint",
-    "npm run test"
+    "npm test"
   ]
 }
