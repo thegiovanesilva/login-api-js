@@ -1,7 +1,7 @@
 {
-  "src/**/*": [
-    "eslint --fix",
-    "npm test:staged",
-    "git add"
+  "src/**/*":
+  ["eslint --fix",
+  "npm test:staged",
+  "git add"
   ]
 }
