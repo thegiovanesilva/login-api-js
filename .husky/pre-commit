@@ -3,4 +3,4 @@
 
 npx eslint --fix
 npm test
-git add
+git add .
