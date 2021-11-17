@@ -4,8 +4,8 @@ const ServerError = require('./server-error')
 const InvalidParamError = require('./invalid-param-error')
 
 module.exports = {
-  InvalidParamError, 
-  MissingParamError, 
-  UnauthorizedError, 
-  ServerError,
+  InvalidParamError,
+  MissingParamError,
+  UnauthorizedError,
+  ServerError
 }

@@ -1,13 +1,12 @@
 const LoginRouter = require('./login-router')
-const {InvalidParamError, MissingParamError, UnauthorizedError, ServerError } = require('../helpers/errors/index')
+const { InvalidParamError, MissingParamError, UnauthorizedError, ServerError } = require('../helpers/errors/index')
 
-
-const makeSut =  () => {
+const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()
   const emailValidatorSpy = makeEmailValidator()
   const sut = new LoginRouter(authUseCaseSpy, emailValidatorSpy)
-  return { 
-    sut, 
+  return {
+    sut,
     authUseCaseSpy,
     emailValidatorSpy
   }
@@ -144,9 +143,8 @@ describe('Login Router', () => {
       }
     }
     const httpResponse = await sut.route(httpRequest)
-    expect(httpResponse.statusCode).toBe(500) 
+    expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
-  
   })
 
   test('Should return 500 if AuthUseCase has no auth method', async () => {
@@ -160,7 +158,6 @@ describe('Login Router', () => {
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
-
   })
 
   test('Should return 500 if AuthUseCase throws', async () => {
