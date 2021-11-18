@@ -1,15 +1,26 @@
+const { InvalidParamError, MissingParamError } = require('../../errors/index')
+
 class AuthUseCase {
-  async auth(email){
+  async auth(email, password){
     if (!email){
-      throw new Error()
+      throw new MissingParamError('email')
+    }
+    if (!password) {
+      throw new MissingParamError('password')
     }
   }
 }
 
 describe('Auth UseCase', () => {
   test('Should throw if no email is provided', async () => {
-    const sut = new AuthUseCase
-    const promise = sut.auth()
-    expect(promise).rejects.toThrow()
+    const sut = new AuthUseCase()
+    const UseCase = sut.auth()
+    await expect(UseCase).rejects.toThrow(new MissingParamError('email'))
+  })
+
+  test('Should throw if no password is provided', async () => {
+    const sut = new AuthUseCase()
+    const UseCase = sut.auth('any_email@mail.com')
+    await expect(UseCase).rejects.toThrow(new MissingParamError('password'))
   })
 })
