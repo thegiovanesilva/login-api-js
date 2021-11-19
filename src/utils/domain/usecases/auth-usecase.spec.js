@@ -1,37 +1,16 @@
 const { InvalidParamError, MissingParamError } = require('../../errors/index')
+const AuthUseCase = require('./auth-usecase.js')
 
-class AuthUseCase {
-  constructor (loadUserByEmailRepository){
-    this.loadUserByEmailRepository = loadUserByEmailRepository
-  }
-  async auth(email, password){
-    if (!email){
-      throw new MissingParamError('email')
-    }
-    if (!password) {
-      throw new MissingParamError('password')
-    }
-    if (!this.loadUserByEmailRepository) {
-      throw new MissingParamError('loadUserByEmailRepository')
-    }
-    if (!this.loadUserByEmailRepository.load) {
-      throw new InvalidParamError('loadUserByEmailRepository')
-    }
-    const user = await this.loadUserByEmailRepository.load(email)
-    if (!user) {
-      return null
-    }
-  }
-}
 
 const makeSut = () => {
   class LoadUserByEmailRepositorySpy {
-    async load (email, password) {
+    async load (email) {
       this.email = email
-      this.password = password
+      return this.user
     }
   }
   const loadUserByEmailRepositorySpy = new LoadUserByEmailRepositorySpy()
+  loadUserByEmailRepositorySpy.user = {}
   const sut = new AuthUseCase(loadUserByEmailRepositorySpy)
   return { 
     sut,
@@ -69,9 +48,16 @@ describe('Auth UseCase', () => {
     const authUseCase = sut.auth('any_email@mail.com', 'any_password')
     await expect(authUseCase).rejects.toThrow(new InvalidParamError('loadUserByEmailRepository'))
   })
-  test('Should return null if loadUserByEmailRepository returns null', async () => {
-    const { sut } = makeSut()
+  test('Should return null if an invalid email is provided', async () => {
+    const { sut, loadUserByEmailRepositorySpy } = makeSut()
+    loadUserByEmailRepositorySpy.user = null
     const accessToken = await sut.auth('invalid_email@mail.com', 'any_password')
+    expect(accessToken).toBeNull()
+  })
+
+  test('Should return null if an invalid password is provided', async () => {
+    const { sut } = makeSut()
+    const accessToken = await sut.auth('valid_email@mail.com', 'invalid_password')
     expect(accessToken).toBeNull()
   })
 })
