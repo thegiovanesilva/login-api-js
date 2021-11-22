@@ -1,4 +1,4 @@
-const { MissingParamError } = require('../../errors/index')
+const { MissingParamError } = require('../../utils/errors/index')
 const AuthUseCase = require('./auth-usecase.js')
 
 const makeTokenGenerator = () => {
@@ -199,7 +199,7 @@ describe('Auth UseCase', () => {
       new AuthUseCase({
         loadUserByEmailRepository,
         encrypter,
-        tokenGenerator,
+        tokenGenerator
       }),
       new AuthUseCase({
         loadUserByEmailRepository,
