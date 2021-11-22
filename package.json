@@ -9,7 +9,7 @@
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
-    "lint": "eslint src --max-warnings=0"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -29,9 +29,7 @@
     "eslint-plugin-promise": "^5.1.1",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
-    "lint-staged": "^11.2.6",
-    "standard": "^16.0.4",
-    "yarn": "^1.22.17"
+    "lint-staged": "^11.2.6"
   },
   "dependencies": {
     "validator": "^13.7.0"
