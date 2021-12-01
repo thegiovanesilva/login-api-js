@@ -32,6 +32,8 @@
     "lint-staged": "^11.2.6"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
     "validator": "^13.7.0"
   }
 }

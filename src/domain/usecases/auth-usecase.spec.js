@@ -1,4 +1,4 @@
-const { MissingParamError } = require('../../errors/index')
+const { MissingParamError } = require('../../utils/errors/index')
 const AuthUseCase = require('./auth-usecase.js')
 
 const makeTokenGenerator = () => {
@@ -112,14 +112,14 @@ const makeSut = () => {
 describe('Auth UseCase', () => {
   test('Should throw if no email is provided', async () => {
     const { sut } = makeSut()
-    const authUseCase = sut.auth()
-    await expect(authUseCase).rejects.toThrow(new MissingParamError('email'))
+    const promise = sut.auth()
+    expect(promise).rejects.toThrow(new MissingParamError('email'))
   })
 
   test('Should throw if no password is provided', async () => {
     const { sut } = makeSut()
-    const UseCase = sut.auth('any_email@mail.com')
-    await expect(UseCase).rejects.toThrow(new MissingParamError('password'))
+    const promise = sut.auth('any_email@mail.com')
+    expect(promise).rejects.toThrow(new MissingParamError('password'))
   })
 
   test('Should call LoadUserByEmailRepository with correct email', async () => {
@@ -199,7 +199,7 @@ describe('Auth UseCase', () => {
       new AuthUseCase({
         loadUserByEmailRepository,
         encrypter,
-        tokenGenerator,
+        tokenGenerator
       }),
       new AuthUseCase({
         loadUserByEmailRepository,
@@ -209,8 +209,8 @@ describe('Auth UseCase', () => {
       })
     )
     for (const sut of suts){
-      const authUseCase = sut.auth('any_email@mail.com', 'any_password')
-      await expect(authUseCase).rejects.toThrow()
+      const promise = sut.auth('any_email@mail.com', 'any_password')
+      expect(promise).rejects.toThrow()
     }    
   })
 
@@ -236,8 +236,8 @@ describe('Auth UseCase', () => {
       })
     )
     for (const sut of suts){
-      const authUseCase = sut.auth('any_email@mail.com', 'any_password')
-      await expect(authUseCase).rejects.toThrow()
+      const promise = sut.auth('any_email@mail.com', 'any_password')
+      expect(promise).rejects.toThrow()
     }    
   })
   
