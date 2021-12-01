@@ -5,6 +5,12 @@ class TokenGenerator {
     this.secret = secret
   }
   async generate(id){
+    if(!id){
+      throw new MissingParamError('id')
+    }
+    if(!this.secret){
+      throw new MissingParamError('secret')
+    }
     return jwt.sign(id, this.secret)
   }
 }
@@ -40,5 +46,10 @@ describe('Token Generator', () => {
     const sut = new TokenGenerator()
     const token = sut.generate('any_id')
     expect(token).rejects.toThrow(new MissingParamError('secret'))
+  })
+  test('Should throw if no secret or is provided', async () => {
+    const sut = new TokenGenerator()
+    const token = sut.generate()
+    expect(token).rejects.toThrow(new MissingParamError('id'))
   })
 })
