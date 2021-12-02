@@ -1,5 +1,6 @@
 const MongoHelper = require('../helpers/mongo-helper')
 const LoadUserByEmailRepository = require('./load-user-by-email-repository')
+
 let db
 
 const makeSut = () => {
@@ -44,7 +45,12 @@ describe('LoadUserByEmailRepository', () => {
       _id: fakeUser._id,
       password: fakeUser.password  
     })
-    
+  })
+
+  test('Should throws if no userModel is provided', async () => {
+    const sut  = new LoadUserByEmailRepository()
+    const promise = sut.load('any_email@mail.com')
+    expect(promise).rejects.toThrow()
   })
 
 
