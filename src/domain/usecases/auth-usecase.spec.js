@@ -240,5 +240,4 @@ describe('Auth UseCase', () => {
       expect(promise).rejects.toThrow()
     }    
   })
-  
 })

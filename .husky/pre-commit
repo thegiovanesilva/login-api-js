@@ -2,5 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx eslint --fix
-npm test
+npm run test
 git add .
