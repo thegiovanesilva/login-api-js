@@ -18,9 +18,6 @@ module.exports = {
   },
 
   async getCollection (name){
-    if(!this.client){
-      await this.connect(this.url, this.dbName)
-    }
     return this.db.collection(name)
   }
 }
