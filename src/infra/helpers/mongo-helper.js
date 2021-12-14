@@ -15,5 +15,12 @@ module.exports = {
 
   async disconnect() {
     await this.client.close()
+  },
+
+  async getCollection (name){
+    if(!this.client){
+      await this.connect(this.url, this.dbName)
+    }
+    return this.db.collection(name)
   }
 }
