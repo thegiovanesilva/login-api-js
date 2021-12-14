@@ -12,7 +12,6 @@ describe('Mongo Helper', () => {
   test('Should reconnect when getCollection() is invoked and client is disconnected', async () => {
     expect(sut.db).toBeTruthy()
     await sut.disconnect()
-    console.log()
     expect(sut.db.s.namespace.collection).toBeUndefined()
     await sut.getCollection('users')
     expect(sut.db).toBeTruthy()

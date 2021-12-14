@@ -29,7 +29,7 @@ describe('LoadUserByEmailRepository', () => {
 
   test('Should return an user if user is found', async () => {
     const sut = makeSut()
-    let fakeUser = userModel.insertOne({ 
+    let fakeUser = await userModel.insertOne({ 
       email: 'valid_email@mail.com',
       password: 'hashed_password'
     })
