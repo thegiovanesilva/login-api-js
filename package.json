@@ -2,11 +2,12 @@
   "name": "setup-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "/src/main/index.js",
   "scripts": {
-    "test": "jest --silent --colors --noStackTrace --passWithNoTests",
+    "start": "node src/main/index.js",
+    "test": "jest --colors --noStackTrace --passWithNoTests --detectOpenHandles",
     "test:unit": "npm test -- --watch -c jest-unit-config.js --verbose",
-    "test:integration": "npm test -- --watch -c jest-integration-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js --verbose",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
     "prepare": "husky install"
@@ -30,12 +31,15 @@
     "eslint-plugin-promise": "^5.1.1",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
-    "lint-staged": "^11.2.6"
+    "lint-staged": "^11.2.6",
+    "supertest": "^6.1.6"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "fast-glob": "^3.2.7",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^4.2.1",
+    "mongodb": "^4.2.2",
     "validator": "^13.7.0"
   }
 }
