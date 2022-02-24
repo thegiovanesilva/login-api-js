@@ -38,6 +38,7 @@
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "fast-glob": "^3.2.7",
+    "jest-junit": "^13.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.2.2",
     "validator": "^13.7.0"
